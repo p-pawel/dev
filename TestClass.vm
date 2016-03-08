@@ -1,0 +1,23 @@
+import org.junit.Before;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
+import static org.fest.assertions.Assertions.*;
+#parse("File Header.java")
+public class ${NAME} {
+
+    #set($classArray = ${CLASS_NAME.split("[.]")})
+    #set($idx = ${classArray.size()} - 1)
+    #set($clazz = ${classArray.get($idx)})
+    #set($varName = $clazz.substring(0,1).toLowerCase() + $clazz.substring(1))
+
+    @InjectMocks
+    private ${CLASS_NAME} $varName = new ${CLASS_NAME}();
+    
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+    }
+    
+    ${BODY}
+}
